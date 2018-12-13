@@ -80,12 +80,13 @@ class IVG():
 
 
 def test():
-    testImage = cv2.imread("campus.jpg" , 0)
+    testImage = cv2.imread("campus3.jpg" , 0)
+    cv2.imwrite("campus3.png", testImage)
     print(testImage.shape)
     testIVG = IVG(testImage)
     maxDegree = np.amax(testIVG.degreeMap)
-    filteredImage = np.floor(testIVG.degreeMap / maxDegree * 255)
-    cv2.imwrite("k-filtered-campus1.png", filteredImage)
+    filteredImage = 255 - np.floor(testIVG.degreeMap / maxDegree * 255)
+    cv2.imwrite("k-filtered-campus3.png", filteredImage)
     testIVG.degreeDistribution()
 
 if __name__ == "__main__":
